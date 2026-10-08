@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Agenda personal CRUD construida con HTML, CSS, JavaScript, MVC y localStorage">
+  <title>Agenda personal MVC con localStorage</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">ANÁLISIS Y DISEÑO DE SOFTWARE</p>
+      <h1>Agenda personal</h1>
+      <p>Aplicación CRUD con arquitectura MVC y persistencia local en el navegador.</p>
+    </div>
+    <div class="hero__badge" aria-label="Tecnologías utilizadas">
+      <span>HTML</span><span>CSS</span><span>JS</span><span>LOCALSTORAGE</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="message message--warning" role="note">
+      Los contactos se guardan únicamente en este navegador. Si elimina los datos del sitio o utiliza otro equipo, la agenda estará vacía.
+    </section>
+
+    <section id="app-panel" aria-label="Gestión de contactos">
+      <div class="session-bar">
+        <div>
+          <span class="session-bar__label">PERSISTENCIA ACTIVA</span>
+          <strong>localStorage · almacenamiento del navegador</strong>
+        </div>
+        <span class="storage-badge">Sin base de datos externa</span>
+      </div>
+
+      <div class="workspace">
+        <section class="panel" aria-labelledby="form-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow eyebrow--dark">FORMULARIO</p>
+              <h2 id="form-title">Nuevo contacto</h2>
+            </div>
+            <button id="cancel-edit-button" class="button button--ghost hidden" type="button">Cancelar edición</button>
+          </div>
+
+          <form id="contact-form" class="form-grid">
+            <input id="contact-id" type="hidden">
+            <label>
+              Nombres <span aria-hidden="true">*</span>
+              <input id="nombres" type="text" maxlength="80" required>
+            </label>
+            <label>
+              Apellidos <span aria-hidden="true">*</span>
+              <input id="apellidos" type="text" maxlength="80" required>
+            </label>
+            <label>
+              Documento
+              <input id="documento" type="text" maxlength="30">
+            </label>
+            <label>
+              Correo
+              <input id="email" type="email" maxlength="160">
+            </label>
+            <label>
+              Teléfono
+              <input id="telefono" type="tel" maxlength="30">
+            </label>
+            <label>
+              Ciudad
+              <input id="ciudad" type="text" maxlength="80">
+            </label>
+            <label class="form-grid__full">
+              Dirección
+              <input id="direccion" type="text" maxlength="180">
+            </label>
+            <label>
+              Fecha de nacimiento
+              <input id="fecha-nacimiento" type="date">
+            </label>
+            <label class="form-grid__full">
+              Notas
+              <textarea id="notas" rows="3" maxlength="500"></textarea>
+            </label>
+            <div class="form-grid__full button-row">
+              <button id="save-button" type="submit" class="button button--primary">Guardar contacto</button>
+              <button id="clear-button" type="reset" class="button button--secondary">Limpiar</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="list-title">
+          <div class="section-heading section-heading--list">
+            <div>
+              <p class="eyebrow eyebrow--dark">CONSULTA</p>
+              <h2 id="list-title">Contactos registrados</h2>
+            </div>
+            <span id="contact-count" class="counter">0 contactos</span>
+          </div>
+
+          <label class="search-box">
+            <span>Buscar por nombre, correo, teléfono o ciudad</span>
+            <input id="search-input" type="search" placeholder="Escriba para filtrar">
+          </label>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Contacto</th>
+                  <th>Ciudad</th>
+                  <th class="actions-column">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="contact-list"></tbody>
+            </table>
+            <p id="empty-state" class="empty-state">No hay contactos para mostrar.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  </main>
+
+  <footer>
+    Caso académico de diseño de software · HTML · CSS · JavaScript · MVC · localStorage
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
